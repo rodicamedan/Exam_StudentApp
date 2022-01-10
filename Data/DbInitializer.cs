@@ -20,6 +20,7 @@ namespace StudentApp.Data
         new Student{CodStud=12, Nume="Muresan",Prenume="Ion",DataNasterii=DateTime.Parse("1989-07-01"),CNP=1258446789,Email="muresanion@gmail.com" },
         new Student{CodStud=13, Nume="Teodorescu",Prenume="Andrei",DataNasterii=DateTime.Parse("1997-06-12"),CNP=2113456789,Email="tandrei@gmail.com" },
             };
+
             foreach (Student s in studenti)
             {
                 context.Studenti.Add(s);
