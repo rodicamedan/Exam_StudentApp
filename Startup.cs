@@ -48,6 +48,7 @@ namespace StudentApp
                 options.Lockout.MaxFailedAccessAttempts = 5;
                 options.Lockout.AllowedForNewUsers = true;
                 options.Password.RequiredLength = 8;
+
             });
             
 
