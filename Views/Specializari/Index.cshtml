@@ -1,0 +1,86 @@
+﻿@model StudentApp.Models.StudViewModels.SpecializareIndexData
+@{
+    ViewData["Title"] = "Specilizari";
+}
+<h2>Specilizari</h2>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Denumire Specializare</th>
+            <th>Domeniu</th>
+            <th>Studenti</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Specilizari)
+        {
+            string selectedRow = "";
+            if (item.ID == (int?)ViewData["SpecializareID"])
+            {
+                selectedRow = "success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @Html.DisplayFor(modelItem => item.DenumireSpecializare)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Domeniu)
+                </td>
+
+                <td>
+                    @{
+                        foreach (var book in item.SpecializareStudenti)
+                        {
+                            @book.Student.ID @: @book.Student.Nume <br />
+                        }
+                    }
+                </td>
+                <td>
+                    <a asp-action="Index" asp-route-id="@item.ID">Select</a> |
+                    <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@if (Model.Studenti != null)
+{
+    <h3>Detalii Studenti</h3>
+    <table class="table">
+        <tr>
+            <th></th>
+            <th>Nume</th>
+            <th>Prenume</th>
+            <th>Email</th>
+        </tr>
+        @foreach (var item in Model.Studenti)
+        {
+            string selectedRow = "";
+            if (item.ID == (int?)ViewData["StudentID"])
+            {
+                selectedRow = "success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @Html.ActionLink("Select", "Index", new { studentID = item.ID })
+                </td>
+                <td>
+                    @item.Nume
+                </td>
+                <td>
+                    @item.Prenume
+                </td>
+                <td>
+                    @item.Email
+                </td>
+            </tr>
+
+        }
+        </table>
+}
